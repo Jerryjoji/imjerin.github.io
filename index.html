@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Solar System Orrery</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Helvetica', sans-serif;
+            background-color: black;
+        }
+        #canvas-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: block;
+        }
+        #controls, #planet-info {
+            position: absolute;
+            z-index: 10;
+            background-color: rgba(30, 30, 30, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: white;
+        }
+        #controls {
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+        #planet-info {
+            top: 20px;
+            left: 20px;
+            max-width: 300px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        #planet-info h3 {
+            margin-top: 0;
+        }
+        button {
+            margin: 5px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #0078d4;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #005fa3;
+        }
+        input[type="range"] {
+            width: 100%;
+        }
+        select {
+            margin: 5px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #0078d4;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-container"></div>
+    <div id="planet-info">
+        <h3 id="planet-name">Select a planet</h3>
+        <p id="planet-details">Details will appear here.</p>
+        <p id="asteroids-info">Nearby asteroids: </p>
+    </div>
+    <div id="controls">
+        <label for="speed-slider">Orbit Speed:</label>
+        <input type="range" id="speed-slider" min="0.001" max="0.05" step="0.001" value="0.01">
+        
+        <label for="planet-select">Select Planet:</label>
+        <select id="planet-select">
+            <option value="all">All Planets</option>
+            <option value="Mercury">Mercury</option>
+            <option value="Venus">Venus</option>
+            <option value="Earth">Earth</option>
+            <option value="Mars">Mars</option>
+            <option value="Jupiter">Jupiter</option>
+            <option value="Saturn">Saturn</option>
+            <option value="Uranus">Uranus</option>
+            <option value="Neptune">Neptune</option>
+        </select>
+        
+        <button id="toggle-trajectories">Toggle Orbits</button>
+        <button id="pause-button">Pause</button>
+        <button id="resume-button" style="display:none;">Resume</button>
+    </div>
+    <div><!-- Add this div in your HTML to display planet details -->
+<div id="planet-details" style="color: white; position: absolute; top: 20px; left: 20px; z-index: 1;">
+    <h2>Planet Details</h2>
+    <p id="details"></p>
+</div>
+</div>
+
+    <!-- Include Three.js and OrbitControls -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
